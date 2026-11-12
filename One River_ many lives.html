@@ -9,7 +9,181 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play One River, many lives.</tw-noscript></noscript></tw-story>
-<tw-storydata name="One River, many lives" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="6C3578DE-87FF-4DA6-B2C1-3F2583484D55" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Khartoum" tags="" position="800,350" size="100,100">KHARTOUM — WHERE THE RIVERS MEET
+<tw-storydata name="One River, many lives" startnode="1" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="6C3578DE-87FF-4DA6-B2C1-3F2583484D55" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* Full-window layout only while the fish scene is present */
+tw-story:has(.fish-scene) {
+  padding: 0;
+}
+
+tw-story:has(.fish-scene) tw-sidebar {
+  display: none;
+}
+
+.fish-scene {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #171c17;
+}
+
+/* Scale the picture and its clickable areas together.
+   This assumes the image is 16:9, as shown in your screenshot. */
+.fish-world {
+  position: absolute;
+  width: max(100vw, 177.7778vh);
+  height: max(100vh, 56.25vw);
+  left: calc((100vw - max(100vw, 177.7778vh)) / 2);
+  top: calc((100vh - max(100vh, 56.25vw)) / 2);
+}
+
+.fish-background {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+/* Invisible clickable regions over the fish */
+.fish-target {
+  position: absolute;
+}
+
+.large-fish {
+  left: 3%;
+  top: 20%;
+  width: 49%;
+  height: 34%;
+}
+
+.catfish {
+  left: 63%;
+  top: 53%;
+  width: 32%;
+  height: 29%;
+}
+
+.fish-target > summary {
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  cursor: pointer;
+  border-radius: 50%;
+  outline: 2px solid transparent;
+}
+
+.fish-target > summary::-webkit-details-marker {
+  display: none;
+}
+
+.fish-target > summary:hover,
+.fish-target > summary:focus-visible {
+  outline-color: rgba(255, 225, 165, 0.8);
+  background: rgba(255, 225, 165, 0.08);
+}
+
+.fish-target summary span {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font: 15px sans-serif;
+  color: #fff3d8;
+  opacity: 0;
+}
+
+.fish-target summary:hover span,
+.fish-target summary:focus-visible span {
+  opacity: 1;
+}
+
+/* Information stays readable over the image */
+.fish-card {
+  position: fixed;
+  left: 24px;
+  bottom: 88px;
+  width: min(380px, calc(100vw - 48px));
+  max-height: 45vh;
+  overflow-y: auto;
+  padding: 22px;
+  background: rgba(17, 25, 23, 0.94);
+  color: #fff3d8;
+  border: 1px solid rgba(255, 225, 165, 0.4);
+  border-radius: 12px;
+  font: 18px/1.5 Georgia, serif;
+  z-index: 5;
+}
+
+.fish-card h2 {
+  font-size: 24px;
+}
+
+.fish-hint {
+  font: 13px/1.4 sans-serif;
+  opacity: 0.7;
+}
+
+.fish-instruction {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  right: 24px;
+  color: #fff3d8;
+  text-shadow: 0 2px 8px #000;
+  font: 16px/1.4 sans-serif;
+  pointer-events: none;
+}
+
+.fish-navigation {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  z-index: 10;
+  font: 16px/1.4 sans-serif;
+}
+
+.fish-navigation tw-link {
+  color: #fff3d8;
+  background: rgba(17, 25, 23, 0.85);
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+/* Clickable areas positioned from your above-water image */
+.fishing-net {
+  left: 68%;
+  top: 73%;
+  width: 31%;
+  height: 25%;
+}
+
+.nile-crocodile {
+  left: 60%;
+  top: 37%;
+  width: 32%;
+  height: 10%;
+}
+
+/* Keep the net's hover label inside the screen */
+.fishing-net summary span {
+  top: 25%;
+}
+
+/* Source links inside both scenes */
+.fish-card a {
+  color: #f3ce89;
+  text-decoration: underline;
+  font: 14px/1.5 sans-serif;
+}
+
+.fish-card a:hover,
+.fish-card a:focus-visible {
+  color: #ffffff;
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Khartoum" tags="" position="800,350" size="100,100">KHARTOUM — WHERE THE RIVERS MEET
 
 &lt;video controls autoplay playsinline preload=&quot;metadata&quot;
        style=&quot;width:100%; height:auto;&quot;&gt;
@@ -55,20 +229,84 @@ Uploaded by Ahmed Atef on YouTube.
 
 Photo or video to be added.
 
-[[Return to Nile Street-&gt;Nile Street]]</tw-passagedata><tw-passagedata pid="10" name="Above the White Nile, Jabal Aulia. (Sudan)" tags="" position="525,725" size="100,100">&lt;img src=&quot;images/white-nile.png&quot;
-     alt=&quot;Fish beneath the White Nile in Sudan&quot;
-     style=&quot;width:100%; height:auto;&quot;&gt;
-     
-     Meet Creatures above the water [[Under The White Nile. Jabal Aulia (Sudan)]] 
-    
-     Return to the cofluence [[Khartoum]] 
-     </tw-passagedata><tw-passagedata pid="11" name="Under The White Nile. Jabal Aulia (Sudan)" tags="" position="675,725" size="100,100">&lt;img src=&quot;images/nile-fish.png&quot;
-     alt=&quot;Fish beneath the Nile in Sudan&quot;
-     style=&quot;width:100%; height:auto;&quot;&gt;
-     
-     Meet Creatures above the water [[Above the White Nile, Jabal Aulia. (Sudan)]]
-    
-     Return to the cofluence [[Khartoum]] </tw-passagedata></tw-storydata>
+[[Return to Nile Street-&gt;Nile Street]]</tw-passagedata><tw-passagedata pid="10" name="Above the White Nile, Jabal Aulia. (Sudan)" tags="" position="525,725" size="100,100">&lt;div class=&quot;fish-scene&quot;&gt;
+&lt;div class=&quot;fish-world&quot;&gt;
+&lt;img class=&quot;fish-background&quot; src=&quot;images/white-nile.png&quot; alt=&quot;An illustrated scene at Jabal Aulia on the White Nile, with a fishing boat and crocodile&quot;&gt;
+
+&lt;details class=&quot;fish-target fishing-net&quot;&gt;
+&lt;summary aria-label=&quot;Explore Sudan&#39;s fish resources&quot;&gt;&lt;span&gt;Fishing on the Nile&lt;/span&gt;&lt;/summary&gt;
+&lt;div class=&quot;fish-card&quot;&gt;
+&lt;h2&gt;Sudan’s fish resources&lt;/h2&gt;
+&lt;p&gt;Sudan’s inland waters and Red Sea coast support diverse fisheries. A 2005 report prepared with FAO estimated the country’s potential sustainable finfish yield at around 110,000 tonnes per year.&lt;/p&gt;
+&lt;p class=&quot;fish-hint&quot;&gt;Historical estimate for Sudan before South Sudan’s independence in 2011.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.fao.org/4/ae916e/ae916e00.pdf#page=28&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Read the FAO report — fisheries, page 20 ↗&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://sudanow-magazine.net/pageArch.php?Id=2510&amp;amp;archMonth=3&amp;amp;archYear=2014&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Read an interview with a Sudanese fisherwoman ↗&lt;/a&gt;&lt;/p&gt;
+&lt;p class=&quot;fish-hint&quot;&gt;Click the net again to close.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+
+&lt;details class=&quot;fish-target nile-crocodile&quot;&gt;
+&lt;summary aria-label=&quot;Explore the Nile crocodile&quot;&gt;&lt;span&gt;Nile crocodile&lt;/span&gt;&lt;/summary&gt;
+&lt;div class=&quot;fish-card&quot;&gt;
+&lt;h2&gt;Nile crocodile&lt;/h2&gt;
+&lt;p&gt;&lt;i&gt;Crocodylus niloticus&lt;/i&gt;&lt;br&gt;تمساح النيل&lt;/p&gt;
+&lt;p&gt;Native to Sudan, the Nile crocodile feeds on fish and other animals, connecting life beneath the water with life along its banks.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://nas.er.usgs.gov/queries/FactSheet.aspx?speciesID=2273&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Species information ↗&lt;/a&gt;&lt;/p&gt;
+&lt;p class=&quot;fish-hint&quot;&gt;Click the crocodile again to close.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;fish-instruction&quot;&gt;Above the White Nile · Explore the crocodile and fishing net&lt;/div&gt;
+
+&lt;nav class=&quot;fish-navigation&quot;&gt;
+[[Explore underwater-&gt;Under The White Nile. Jabal Aulia (Sudan)]]
+[[Return to Khartoum-&gt;Khartoum]]
+&lt;/nav&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="11" name="Under The White Nile. Jabal Aulia (Sudan)" tags="" position="675,725" size="100,100">&lt;div class=&quot;fish-scene&quot;&gt;
+&lt;div class=&quot;fish-world&quot;&gt;
+&lt;img class=&quot;fish-background&quot; src=&quot;images/nile-fish.png&quot; alt=&quot;An artistic interpretation of fish beneath the White Nile in Sudan&quot;&gt;
+
+&lt;details class=&quot;fish-target large-fish&quot;&gt;
+&lt;summary aria-label=&quot;Explore the Nile perch&quot;&gt;&lt;span&gt;Nile perch&lt;/span&gt;&lt;/summary&gt;
+&lt;div class=&quot;fish-card&quot;&gt;
+&lt;h2&gt;Nile perch&lt;/h2&gt;
+&lt;p&gt;&lt;i&gt;Lates niloticus&lt;/i&gt;&lt;/p&gt;
+
+&lt;p&gt;When the White Nile was dammed at Jabal Aulia in 1937, it formed a reservoir south of Khartoum. An FAO review, drawing on research from 1986, lists Nile perch among the reservoir’s principal commercially caught fish.&lt;/p&gt;
+
+&lt;p&gt;Its presence connects this underwater world to decades of fishing along the White Nile.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.fao.org/4/v4110e/V4110E05.htm&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Read the FAO history of Jabal Aulia’s fisheries ↗&lt;/a&gt;&lt;/p&gt;
+
+&lt;p class=&quot;fish-hint&quot;&gt;Artistic representation. Click the fish again to close.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+
+&lt;details class=&quot;fish-target catfish&quot;&gt;
+&lt;summary aria-label=&quot;Explore Gargur&quot;&gt;&lt;span&gt;Gargur · Nile catfish&lt;/span&gt;&lt;/summary&gt;
+&lt;div class=&quot;fish-card&quot;&gt;
+&lt;h2&gt;Gargur&lt;/h2&gt;
+&lt;p&gt;&lt;i&gt;Synodontis schall&lt;/i&gt;&lt;/p&gt;
+
+&lt;p&gt;Known locally as Gargur, this catfish is documented in Sudan’s White Nile fisheries. A study published in 2011 at Jabal Aulia and Al-Kalakla recorded it being caught mainly with drift nets near breeding grounds and with cast nets.&lt;/p&gt;
+
+&lt;p&gt;Different fish meet different nets: the same study recorded Nile perch being caught with fixed nets.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://academicjournals.org/journal/AJEST/article-abstract/DAAC84715065&quot;&gt;Read the study of White Nile fishing practices ↗&lt;/a&gt;&lt;/p&gt;
+
+&lt;p class=&quot;fish-hint&quot;&gt;Artistic representation. Click the fish again to close.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/details&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;fish-instruction&quot;&gt;Beneath the White Nile · Click a fish to explore&lt;/div&gt;
+
+&lt;nav class=&quot;fish-navigation&quot;&gt;
+[[Above the water-&gt;Above the White Nile, Jabal Aulia. (Sudan)]]
+[[Return to Khartoum-&gt;Khartoum]]
+&lt;/nav&gt;
+&lt;/div&gt;</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
